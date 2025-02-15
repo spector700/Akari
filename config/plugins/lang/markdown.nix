@@ -1,4 +1,9 @@
-{ pkgs, helpers, ... }:
+{
+  lib,
+  pkgs,
+  helpers,
+  ...
+}:
 {
   extraPackages = with pkgs; [
     marksman
@@ -42,8 +47,8 @@
     };
 
     lint = {
-      lintersByFt.md = [ "markdownlint-cli2" ];
-      linters.markdownlint-cli2.cmd = "${pkgs.markdownlint-cli2}/bin/markdownlint-cli2";
+      lintersByFt.markdown = [ "markdownlint" ];
+      linters.markdownlint.cmd = lib.getExe pkgs.markdownlint-cli;
     };
   };
 
