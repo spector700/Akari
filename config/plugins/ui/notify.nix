@@ -1,9 +1,11 @@
 {
   plugins.notify = {
     enable = true;
-    # remove animations for preformance
-    stages = "static";
-    timeout = 4000;
+    # remove animations for performance
+    settings = {
+      stages = "static";
+      timeout = 4000;
+    };
   };
 
   keymaps = [
