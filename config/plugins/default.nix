@@ -2,7 +2,6 @@
   imports = [
     ./ai/codeium.nix
 
-    # ./completion/blink.nix
     ./completion/cmp.nix
     ./completion/lspkind.nix
 
@@ -20,7 +19,6 @@
     ./git/gitsigns.nix
 
     ./lsp/conform.nix
-    ./lsp/fidget.nix
     ./lsp/lsp.nix
     ./lsp/lspsaga.nix
     ./lsp/trouble.nix

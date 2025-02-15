@@ -1,6 +1,7 @@
 {
   plugins = {
     lsp-signature.enable = true;
+    fidget.enable = true;
 
     lsp = {
       enable = true;
