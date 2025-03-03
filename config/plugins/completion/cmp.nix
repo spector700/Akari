@@ -2,7 +2,7 @@
 {
   plugins = {
     cmp = {
-      enable = true;
+      enable = false;
       autoEnableSources = true;
 
       cmdline = {

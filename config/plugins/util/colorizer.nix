@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
-  extraPlugins = [
-    pkgs.vimPlugins.windows-nvim
-    pkgs.vimPlugins.nvzone-minty
+  extraPlugins = with pkgs.vimPlugins; [
+    windows-nvim
+    nvzone-minty
   ];
   extraConfigLua = # lua
     ''

@@ -5,9 +5,9 @@
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
 
-    blink-compat = {
-      url = "github:saghen/blink.compat";
-      flake = false;
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

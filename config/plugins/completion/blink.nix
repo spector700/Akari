@@ -1,23 +1,26 @@
 {
   config,
+  pkgs,
   lib,
   inputs,
-  mkPkgs,
   ...
 }:
 {
-  extraPlugins = [
-    (mkPkgs "blink.compat" inputs.blink-compat)
-  ];
+  extraPackages = lib.mkIf config.plugins.blink-cmp.enable (
+    with pkgs;
+    [
+      # blink-cmp-git
+      gh
+      # blink-cmp-dictionary
+      wordnet
+    ]
+  );
 
   plugins = lib.mkMerge [
     {
       blink-cmp = {
         enable = true;
-        luaConfig.pre = # lua
-          ''
-            require('blink.compat').setup({debug = true, impersonate_nvim_cmp = true})
-          '';
+        package = inputs.blink-cmp.packages.${pkgs.system}.default;
 
         settings = {
           completion = {
@@ -33,20 +36,49 @@
                 columns = [
                   {
                     __unkeyed-1 = "label";
-                    __unkeyed-2 = "label_description";
-                    gap = 1;
                   }
                   {
                     __unkeyed-1 = "kind_icon";
                     __unkeyed-2 = "kind";
                     gap = 1;
                   }
+                  { __unkeyed-1 = "source_name"; }
                 ];
+                components = {
+                  kind_icon = {
+                    ellipsis = false;
+                    text.__raw = ''
+                      function(ctx)
+                        local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                        -- Check for both nil and the default fallback icon
+                        if not kind_icon or kind_icon == '󰞋' then
+                          -- Use our configured kind_icons
+                          return require('blink.cmp.config').appearance.kind_icons[ctx.kind] or ""
+                        end
+                        return kind_icon
+                      end,
+                      -- Optionally, you may also use the highlights from mini.icons
+                      highlight = function(ctx)
+                        local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                        return hl
+                      end
+                    '';
+                  };
+                };
               };
+            };
+          };
+          fuzzy = {
+            implementation = "rust";
+            prebuilt_binaries = {
+              download = false;
             };
           };
           appearance = {
             use_nvim_cmp_as_default = true;
+            kind_icons = {
+              Copilot = "";
+            };
           };
           keymap = {
             preset = "enter";
@@ -71,107 +103,90 @@
             enabled = true;
             window.border = "rounded";
           };
+          snippets.preset = "mini_snippets";
           sources = {
-            completion = {
-              enabled_providers = [
+            default =
+              [
                 "buffer"
                 "calc"
-                "cmdline"
-                "codeium"
+                "dictionary"
                 "emoji"
                 "git"
                 "lsp"
-                "luasnip"
-                #"npm"
                 "path"
                 "snippets"
                 "spell"
-                #"treesitter"
-                "zsh"
+              ]
+              ++ lib.optionals config.plugins.copilot-lua.enable [
+                "copilot"
               ];
-            };
-            providers = {
-              calc = {
-                name = "calc";
-                module = "blink.compat.source";
-              };
-              cmdline = {
-                name = "cmdline";
-                module = "blink.compat.source";
-              };
-              luasnip = {
-                name = "luasnip";
-                module = "blink.compat.source";
-                score_offset = -3;
-                opts = {
-                  use_show_condition = false;
-                  show_autosnippets = true;
+            providers =
+              {
+                # BUILT-IN SOURCES
+                lsp.score_offset = 4;
+                # Community sources
+                copilot = {
+                  name = "copilot";
+                  module = "blink-copilot";
+                  async = true;
+                  score_offset = 100;
+                };
+                dictionary = {
+                  name = "Dict";
+                  module = "blink-cmp-dictionary";
+                  min_keyword_length = 3;
+                };
+                emoji = {
+                  name = "Emoji";
+                  module = "blink-emoji";
+                  score_offset = 1;
+                };
+                git = {
+                  name = "Git";
+                  module = "blink-cmp-git";
+                  enabled = true;
+                  score_offset = 100;
+                  should_show_items.__raw = ''
+                    function()
+                      return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
+                    end
+                  '';
+                  opts = {
+                    git_centers = {
+                      github = {
+                        issue = {
+                          on_error.__raw = "function(_,_) return true end";
+                        };
+                      };
+                    };
+                  };
+                };
+                spell = {
+                  name = "Spell";
+                  module = "blink-cmp-spell";
+                  score_offset = 1;
+                };
+              }
+              // lib.optionalAttrs config.plugins.blink-compat.enable {
+                calc = {
+                  name = "calc";
+                  module = "blink.compat.source";
+                  score_offset = 2;
                 };
               };
-              codeium = {
-                name = "codeium";
-                module = "blink.compat.source";
-              };
-              # copilot = {
-              #   name = "copilot";
-              #   module = "blink.compat.source";
-              #   score_offset = 100;
-              #   transform_items.__raw = ''
-              #     function(ctx, items)
-              #         -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-              #         local kind = require("blink.cmp.types").CompletionItemKind.Text
-              #
-              #         for i = 1, #items do
-              #             items[i].kind = kind
-              #         end
-              #
-              #         return items
-              #     end'';
-              # };
-              emoji = {
-                name = "emoji";
-                module = "blink.compat.source";
-              };
-              git = {
-                name = "git";
-                module = "blink.compat.source";
-              };
-              npm = {
-                name = "npm";
-                module = "blink.compat.source";
-              };
-              spell = {
-                name = "spell";
-                module = "blink.compat.source";
-              };
-              #treesitter = {
-              #    name = "treesitter";
-              #    module = "blink.compat.source";
-              #  };
-              zsh = {
-                name = "zsh";
-                module = "blink.compat.source";
-              };
-            };
           };
         };
       };
+
+      blink-cmp-dictionary.enable = true;
+      blink-cmp-git.enable = true;
+      blink-cmp-spell.enable = true;
+      blink-copilot.enable = true;
+      blink-emoji.enable = true;
+      blink-compat.enable = true;
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
-      cmp-cmdline.enable = true;
-      cmp-emoji.enable = true;
-      cmp-git.enable = true;
-      #cmp-nixpkgs_maintainers.enable = true;
-      cmp-npm.enable = true;
-      cmp-spell.enable = true;
-      cmp-treesitter.enable = true;
-      cmp-zsh.enable = true;
-
-      lsp.capabilities = # Lua
-        ''
-          capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-        '';
     })
   ];
 }
