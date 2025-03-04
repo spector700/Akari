@@ -1,5 +1,6 @@
 {
   imports = [
+    ./ai/avante.nix
     ./ai/copilot.nix
     ./ai/codeium.nix
 

@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -21,7 +22,7 @@
     };
   };
 
-  keymaps = [
+  keymaps = lib.mkIf config.plugins.codeium-nvim.enable [
     {
       mode = "n";
       key = "<leader>ac";
