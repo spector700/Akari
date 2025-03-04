@@ -4,12 +4,8 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>E";
-      action.__raw = ''
-        function()
-          require('yazi').yazi()
-        end
-      '';
+      key = "<leader>e";
+      action = "<cmd>Yazi toggle<cr>";
       options = {
         desc = "Yazi toggle";
         silent = true;
