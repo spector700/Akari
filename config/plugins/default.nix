@@ -1,5 +1,6 @@
 {
   imports = [
+    ./ai/copilot.nix
     ./ai/codeium.nix
 
     ./completion/blink.nix
