@@ -57,6 +57,7 @@
     ./ui/ufo.nix
 
     ./util/colorizer.nix
+    ./util/compiler.nix
     ./util/debugprint.nix
     ./util/kulala.nix
     ./util/mini.nix
