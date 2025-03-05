@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
 
   plugins = {
@@ -12,7 +12,7 @@
       };
 
       formatters.eslint_d = {
-        command = "${pkgs.eslint_d}/bin/eslint_d";
+        command = lib.getExe pkgs.eslint_d;
       };
     };
 

@@ -1,15 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   plugins = {
     conform-nvim.settings = {
       formatters_by_ft = {
         cpp = [ "clang-format" ];
+        cmake = [ "cmake-format" ];
       };
 
       formatters = {
-        clang-format = {
-          command = "${pkgs.clang-tools}/bin/clang-format";
-        };
+        clang-format.command = lib.getExe' pkgs.clang-tools "clang-format";
+        cmake-format.command = lib.getExe pkgs.cmake-format;
       };
     };
 

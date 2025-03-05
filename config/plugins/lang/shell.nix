@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   plugins = {
     conform-nvim.settings = {
@@ -6,9 +6,7 @@
         sh = [ "shfmt" ];
       };
       formatters = {
-        shfmt = {
-          command = "${pkgs.shfmt}/bin/shfmt";
-        };
+        shfmt.command = lib.getExe pkgs.shfmt;
       };
     };
 

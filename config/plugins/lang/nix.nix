@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   flake = "/home/spector/nixos-config";
 in
@@ -10,13 +10,11 @@ in
 
     conform-nvim.settings = {
       formatters_by_ft = {
-        nix = [ "nixfmt-rfc-style" ];
+        nix = [ "nixfmt" ];
       };
 
       formatters = {
-        nixfmt-rfc-style = {
-          command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-        };
+        nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
       };
     };
 

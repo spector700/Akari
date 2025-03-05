@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   plugins = {
     lsp.servers = {
@@ -12,9 +12,7 @@
       };
 
       linters = {
-        hadolint = {
-          cmd = "${pkgs.hadolint}/bin/hadolint";
-        };
+        hadolint.cmd = lib.getExe pkgs.hadolint;
       };
     };
   };

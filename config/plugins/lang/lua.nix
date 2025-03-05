@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   plugins = {
     lsp.servers.lua_ls.enable = true;
@@ -10,14 +10,14 @@
 
       formatters = {
         stylua = {
-          command = "${pkgs.stylua}/bin/stylua";
+          command = lib.getExe pkgs.stylua;
         };
       };
     };
 
     lint = {
       lintersByFt.lua = [ "luacheck" ];
-      linters.luacheck.cmd = "${pkgs.lua54Packages.luacheck}/bin/luacheck";
+      linters.luacheck.cmd = lib.getExe pkgs.lua54Packages.luacheck;
     };
   };
 }

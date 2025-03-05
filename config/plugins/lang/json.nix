@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   plugins = {
     conform-nvim.settings = {
@@ -8,7 +8,7 @@
 
       formatters = {
         jq = {
-          command = "${pkgs.jq}/bin/jq";
+          command = lib.getExe pkgs.jq;
         };
       };
     };
