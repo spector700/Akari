@@ -23,6 +23,7 @@
     ./git/gitsigns.nix
 
     ./lsp/conform.nix
+    ./lsp/fastaction.nix
     ./lsp/lsp.nix
     ./lsp/lspsaga.nix
     ./lsp/trouble.nix
