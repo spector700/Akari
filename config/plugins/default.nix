@@ -19,6 +19,7 @@
     ./theme
     ./luasnip
 
+    ./snacks/bigfile.nix
     ./snacks/bufdelete.nix
 
     ./telescope
