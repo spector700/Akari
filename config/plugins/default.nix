@@ -21,6 +21,7 @@
 
     ./snacks/bigfile.nix
     ./snacks/bufdelete.nix
+    ./snacks/lazygit.nix
 
     ./telescope
 

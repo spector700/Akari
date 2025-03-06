@@ -30,7 +30,6 @@
       settings = {
 
         gitbrowse.enabled = true;
-        lazygit.enabled = true;
         profiler.enabled = true;
       };
     };
@@ -43,14 +42,6 @@
       action = "<cmd>lua Snacks.gitbrowse()<CR>";
       options = {
         desc = "Open file in browser";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gg";
-      action = "<cmd>lua Snacks.lazygit()<CR>";
-      options = {
-        desc = "Open lazygit";
       };
     }
   ];
