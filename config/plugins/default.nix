@@ -18,6 +18,9 @@
 
     ./theme
     ./luasnip
+
+    ./snacks/bufdelete.nix
+
     ./telescope
 
     ./git/gitsigns.nix
