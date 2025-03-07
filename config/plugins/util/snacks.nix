@@ -28,6 +28,8 @@
       enable = true;
       settings = {
         profiler.enabled = true;
+        indent.enabled = true;
+        scroll.enabled = true;
       };
     };
   };

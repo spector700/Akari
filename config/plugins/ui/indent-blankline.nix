@@ -1,7 +1,7 @@
 {
   plugins = {
     indent-blankline = {
-      enable = true;
+      enable = false;
       settings = {
         indent = {
           char = "│"; # "│" or "▎"
@@ -9,7 +9,10 @@
         };
         scope.enabled = false;
         exclude = {
-          buftypes = [ "terminal" "nofile" ];
+          buftypes = [
+            "terminal"
+            "nofile"
+          ];
           filetypes = [
             "help"
             "alpha"
