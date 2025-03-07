@@ -20,7 +20,7 @@
 
       linters = {
         jsonlint = {
-          cmd = "${pkgs.nodePackages_latest.jsonlint}/bin/jsonlint";
+          cmd = lib.getExe pkgs.nodePackages_latest.jsonlint;
         };
       };
     };

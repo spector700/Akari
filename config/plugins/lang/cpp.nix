@@ -13,6 +13,18 @@
       };
     };
 
+    lint = {
+      lintersByFt = {
+        cpp = [ "clangtidy" ];
+        cmake = [ "cmakelint" ];
+      };
+
+      linters = {
+        clangtidy.cmd = lib.getExe' pkgs.clang-tools "clang-tidy";
+        cmakelint.cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
+      };
+    };
+
     lsp.servers = {
       cmake.enable = true;
       clangd = {
