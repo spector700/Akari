@@ -1,7 +1,9 @@
-{ pkgs, lib, ... }:
-let
-  flake = "/home/spector/nixos-config";
-in
+{
+  self,
+  pkgs,
+  lib,
+  ...
+}:
 {
   plugins = {
     nix.enable = true;
@@ -24,26 +26,30 @@ in
       };
 
       linters = {
-        statix = {
-          cmd = "${pkgs.statix}/bin/statix";
-        };
+        statix.cmd = lib.getExe pkgs.statix;
       };
     };
 
     lsp.servers.nixd = {
       enable = true;
-      settings = {
-        nixpkgs.expr = ''import (builtins.getFlake "${flake}").inputs.nixpkgs { }'';
-        options = {
-          nixos.expr = ''(builtins.getFlake "${flake}").nixosConfigurations.alfhiem.options'';
-          home_manager.expr = ''(builtins.getFlake "${flake}").nixosConfigurations.alfhiem.options'';
+      settings =
+        let
+          flake = ''(builtins.getFlake "${self}")'';
+          system = ''''${builtins.currentSystem}'';
+        in
+        {
+          formatting = {
+            command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+          };
+          nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
+          options = {
+            nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
+            # NOTE: These will be passed in from outside using `.extend` from the flake installing this package
+            # nix-darwin.expr = ''${flake}.darwinConfigurations.khanelimac.options'';
+            # nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
+            # home-manager.expr = ''${nixos.expr}.home-manager.users.type.getSubOptions [ ]'';
+          };
         };
-        flake_parts.expr = ''let flake = builtins.getFlake ("${flake}"); in flake.debug.options // flake.currentSystem.options'';
-      };
     };
   };
-
-  extraConfigVim = ''
-    au BufRead,BufNewFile flake.lock setf json
-  '';
 }
