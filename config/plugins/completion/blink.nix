@@ -30,6 +30,9 @@
               auto_show = true;
               window.border = "rounded";
             };
+            list.selection = {
+              preselect = false;
+            };
             menu = {
               border = "rounded";
               draw = {
@@ -82,11 +85,11 @@
           };
           keymap = {
             preset = "enter";
-            "<A-Tab>" = [
+            "<C-Up>" = [
               "snippet_forward"
               "fallback"
             ];
-            "<A-S-Tab>" = [
+            "<C-Down>" = [
               "snippet_backward"
               "fallback"
             ];
