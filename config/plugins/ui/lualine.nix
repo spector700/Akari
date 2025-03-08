@@ -20,20 +20,24 @@
       sections = {
         lualine_a = [ "mode" ];
         lualine_b = [ "branch" ];
+
         lualine_y = [
-          "progress"
           {
+            __unkeyed = "progress";
             separator = "";
           }
-          "location"
           {
+            __unkeyed = "location";
+            separator = "";
             padding = {
               left = 0;
               right = 1;
             };
           }
         ];
-        lualine_z = [ ''"${icons.ui.Time}" .. os.date("%R")'' ];
+        lualine_z = [
+          ''"${icons.ui.Time}" .. os.date("%R")''
+        ];
       };
     };
   };
@@ -62,7 +66,7 @@
 
           local bufname = vim.fn.bufname(vim.fn.bufnr())
           local sep = package.config:sub(1, 1)
-          
+
           local root = (opts.relative == "root") and vim.fn.getcwd() or vim.fn.fnamemodify(bufname, ":h")
           local cwd = vim.fn.getcwd()
 
@@ -95,35 +99,60 @@
                     hint  = "${icons.diagnostics.Hint}",
                     info  = "${icons.diagnostics.BoldInformation}",
                   },
+                  separator = ")"
                 },
                 { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
                 { ui.pretty_path() },
-              },
-            lualine_x = {
-          {
-            function() return require("noice").api.status.command.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = ui.fg("Statement"),
-          },
-          {
-            function() return require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = ui.fg("Constant"),
-          },
-          {
-            function() return "${icons.diagnostics.Debug}" .. require("dap").status() end,
-            cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = ui.fg("Debug"),
-          },
-          {
-          "diff",
-          symbols = {
-            added = "${icons.git.LineAdded}",
-            modified = "${icons.git.LineModified}",
-            removed= "${icons.git.LineRemoved}",
             },
-          },
-        }
+
+          lualine_x = {
+              {
+                function() return require("noice").api.status.command.get() end,
+                cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+                color = ui.fg("Statement"),
+                separator = "(",
+              },
+              {
+                function() return require("noice").api.status.mode.get() end,
+                cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                color = ui.fg("Constant"),
+                separator = "(",
+              },
+              {
+                function() return "${icons.diagnostics.Debug}" .. require("dap").status() end,
+                cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+                color = ui.fg("Debug"),
+                separator = "(",
+              },
+              {
+                  function()
+                      local msg = ""
+                      local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                      local clients = vim.lsp.get_active_clients()
+                      if next(clients) == nil then
+                          return msg
+                      end
+                      for _, client in ipairs(clients) do
+                          local filetypes = client.config.filetypes
+                          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                              return client.name
+                          end
+                      end
+                      return msg
+                  end,
+
+                  color = ui.fg("StatusLine"),
+                  separator = "(",
+              },
+              {
+              "diff",
+              symbols = {
+                added = "${icons.git.LineAdded}",
+                modified = "${icons.git.LineModified}",
+                removed= "${icons.git.LineRemoved}",
+                },
+              },
+          }
       }
     })
   '';
