@@ -132,6 +132,18 @@
               {
                 # BUILT-IN SOURCES
                 lsp.score_offset = 4;
+                buffer = {
+                  opts = {
+                    # Get suggestions from all "normal" open buffers
+                    get_bufnrs.__raw = ''
+                      function()
+                        return vim.tbl_filter(function(bufnr)
+                          return vim.bo[bufnr].buftype == ""
+                        end, vim.api.nvim_list_bufs())
+                       end
+                    '';
+                  };
+                };
                 # Community sources
                 copilot = {
                   name = "copilot";
