@@ -19,10 +19,7 @@
     ./theme
     ./luasnip
 
-    ./snacks/bigfile.nix
-    ./snacks/bufdelete.nix
-    ./snacks/gitbrowse.nix
-    ./snacks/lazygit.nix
+    ./snacks
 
     ./telescope
 
@@ -73,6 +70,5 @@
     ./util/plenary.nix
     ./util/persistence.nix
     ./util/project-nvim.nix
-    ./util/snacks.nix
   ];
 }

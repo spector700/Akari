@@ -18,11 +18,6 @@
           delay = 0;
         };
 
-        # Show indent lines
-        # indentscope = {
-        #   symbol = "│";
-        #   draw.delay = 0;
-        # };
         snippets = {
           snippets = {
             __unkeyed-1.__raw =

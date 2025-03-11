@@ -5,6 +5,12 @@
   ...
 }:
 {
+  imports = [
+    ./bigfile.nix
+    ./bufdelete.nix
+    ./gitbrowse.nix
+    ./lazygit.nix
+  ];
   extraConfigLuaPre = lib.mkOrder 1 (
     lib.optionalString
       (config.plugins.snacks.enable && config.plugins.snacks.settings.profiler.enabled) # Lua
