@@ -63,10 +63,6 @@
           action = "todo-comments";
           options.desc = "Search Todo";
         };
-        "<leader>sn" = {
-          action = "notify";
-          options.desc = "Search Notifications";
-        };
         "<leader>su" = {
           action = "undo";
           options.desc = "Search Undo";
