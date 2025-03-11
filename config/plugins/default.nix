@@ -70,5 +70,6 @@
     ./util/plenary.nix
     ./util/persistence.nix
     ./util/project-nvim.nix
+    ./util/package-info.nix
   ];
 }
