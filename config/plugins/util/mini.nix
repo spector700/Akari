@@ -4,6 +4,8 @@
     mini = {
       enable = true;
       modules = {
+        ai = { };
+        icons = { };
         comment = {
           options = {
             customCommentString = ''
@@ -17,10 +19,10 @@
         };
 
         # Show indent lines
-        indentscope = {
-          symbol = "│";
-          draw.delay = 0;
-        };
+        # indentscope = {
+        #   symbol = "│";
+        #   draw.delay = 0;
+        # };
         snippets = {
           snippets = {
             __unkeyed-1.__raw =
