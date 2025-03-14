@@ -1,14 +1,15 @@
 { pkgs, ... }:
 {
   plugins = {
-    project-nvim.enableTelescope = true;
     telescope = {
       enable = true;
+      highlightTheme = "Catppuccin Macchiato";
       extensions = {
         fzf-native.enable = true;
-        undo.enable = true;
         ui-select = {
+          enable = true;
           settings = {
+            __unkeyed-1.__raw = ''require("telescope.themes").get_dropdown{}'';
             specific_opts = {
               codeactions = true;
             };
@@ -20,6 +21,14 @@
         prompt_prefix = "   ";
         color_devicons = true;
         set_env.COLORTERM = "truecolor";
+        file_ignore_patterns = [
+          "^.git/"
+          "^.mypy_cache/"
+          "^__pycache__/"
+          "^output/"
+          "^data/"
+          "%.ipynb"
+        ];
 
         mappings = {
           i = {
@@ -55,23 +64,11 @@
         ];
       };
       keymaps = {
-        "<leader>fp" = {
-          action = "projects";
-          options.desc = "Search Todo";
-        };
-        "<leader>st" = {
+        "<leader>ft" = {
           action = "todo-comments";
-          options.desc = "Search Todo";
-        };
-        "<leader>su" = {
-          action = "undo";
-          options.desc = "Search Undo";
+          options.desc = "View Todo";
         };
         "<leader><space>" = {
-          action = "find_files";
-          options.desc = "Find project files";
-        };
-        "<leader>ff" = {
           action = "find_files hidden=true";
           options.desc = "Find project files";
         };
@@ -79,13 +76,13 @@
           action = "live_grep";
           options.desc = "Grep (root dir)";
         };
-        "<leader>:" = {
+        "<leader>f:" = {
           action = "command_history";
-          options.desc = "Command History";
+          options.desc = "View Command History";
         };
         "<leader>fr" = {
           action = "oldfiles";
-          options.desc = "Recent";
+          options.desc = "View Recent files";
         };
         "<c-p>" = {
           mode = [
@@ -99,37 +96,37 @@
           action = "git_commits";
           options.desc = "commits";
         };
-        "<leader>sa" = {
+        "<leader>fa" = {
           action = "autocommands";
           options.desc = "Auto Commands";
         };
-        "<leader>sc" = {
+        "<leader>fc" = {
           action = "commands";
-          options.desc = "Commands";
+          options.desc = "View Commands";
         };
-        "<leader>sd" = {
+        "<leader>fd" = {
           action = "diagnostics bufnr=0";
-          options.desc = "Workspace diagnostics";
+          options.desc = "View Workspace diagnostics";
         };
-        "<leader>sh" = {
+        "<leader>fh" = {
           action = "help_tags";
-          options.desc = "Help pages";
+          options.desc = "View Help pages";
         };
-        "<leader>sk" = {
+        "<leader>fk" = {
           action = "keymaps";
-          options.desc = "Key maps";
+          options.desc = "View Key maps";
         };
-        "<leader>sM" = {
+        "<leader>fm" = {
           action = "man_pages";
-          options.desc = "Man pages";
+          options.desc = "View Man pages";
         };
-        "<leader>sm" = {
+        "<leader>f'" = {
           action = "marks";
-          options.desc = "Jump to Mark";
+          options.desc = "View Marks";
         };
-        "<leader>so" = {
+        "<leader>fo" = {
           action = "vim_options";
-          options.desc = "Options";
+          options.desc = "View Options";
         };
         "<leader>uC" = {
           action = "colorscheme";
