@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./manix.nix
+    ./undo.nix
+  ];
+
   plugins = {
     telescope = {
       enable = true;
