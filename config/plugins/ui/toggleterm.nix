@@ -1,3 +1,4 @@
+{ config, lib, ... }:
 {
   plugins.toggleterm = {
     enable = true;
@@ -30,33 +31,48 @@
     };
   };
 
-  keymaps = [
+  keymaps = lib.mkIf config.plugins.toggleterm.enable [
     {
-      mode = "t";
+      mode = [
+        "t"
+        "n"
+      ];
       key = "<C-g>";
       action = "<cmd>2ToggleTerm<cr>";
       options.desc = "Open/Close Terminal 2";
     }
     {
-      mode = "t";
+      mode = [
+        "t"
+        "n"
+      ];
       key = "<C-Left>";
       action = "<cmd>wincmd h<cr>";
       options.desc = "Go to Left window";
     }
     {
-      mode = "t";
+      mode = [
+        "t"
+        "n"
+      ];
       key = "<C-Right>";
       action = "<cmd>wincmd l<cr>";
       options.desc = "Go to Right window";
     }
     {
-      mode = "t";
+      mode = [
+        "t"
+        "n"
+      ];
       key = "<C-Up>";
       action = "<cmd>wincmd k<cr>";
       options.desc = "Go to Up window";
     }
     {
-      mode = "t";
+      mode = [
+        "t"
+        "n"
+      ];
       key = "<C-Down>";
       action = "<cmd>wincmd j<cr>";
       options.desc = "Go to Down window";
