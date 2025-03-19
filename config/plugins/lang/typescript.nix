@@ -16,6 +16,32 @@
       };
     };
 
+    typescript-tools = {
+      enable = true;
+
+      settings = {
+        settings = {
+          code_lens = "off";
+          complete_function_calls = false;
+          disable_member_code_lens = true;
+          expose_as_code_action = "all";
+          include_completions_with_insert_text = true;
+          publish_diagnostic_on = "insert_leave";
+          separate_diagnostic_server = true;
+          tsserver_locale = "en";
+          tsserver_max_memory = "auto";
+          tsserver_path = "${pkgs.typescript}/lib/node_modules/typescript/lib/tsserver.js";
+          jsx_close_tag = {
+            enable = false;
+            filetypes = [
+              "javascriptreact"
+              "typescriptreact"
+            ];
+          };
+        };
+      };
+    };
+
     lsp.servers = {
       svelte.enable = true;
 
@@ -45,45 +71,6 @@
           "pcss"
           "postcss"
         ];
-      };
-
-      ts_ls = {
-        enable = true;
-        filetypes = [
-          "javascript"
-          "javascriptreact"
-          "typescript"
-          "typescriptreact"
-          "svelte"
-        ];
-
-        settings = {
-          complete_function_calls = true;
-          vtsls = {
-            autoUseWorkspaceTsdk = true;
-            experimental = {
-              completion = {
-                enableServerSideFuzzyMatch = true;
-              };
-            };
-          };
-
-          typescript = {
-            updateImportsOnFileMove.enabled = "always";
-            suggest = {
-              completeFunctionCalls = true;
-            };
-
-            inlayHints = {
-              enumMemberValues.enabled = true;
-              functionLikeReturnTypes.enabled = true;
-              parameterNames.enabled = "literals";
-              parameterTypes.enabled = true;
-              propertyDeclarationTypes.enabled = true;
-              variableType.enabled = false;
-            };
-          };
-        };
       };
     };
 
