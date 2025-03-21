@@ -80,7 +80,7 @@
           "n"
           "v"
         ];
-        group = "+debug";
+        group = "Debug";
       }
     ];
   };
