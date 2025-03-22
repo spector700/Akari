@@ -17,9 +17,11 @@
 
     image = {
       enable = helpers.enableExceptInTests;
-      integrations.markdown = {
-        clearInInsertMode = true;
-        onlyRenderImageAtCursor = true;
+      settings = {
+        integrations.markdown = {
+          clearInInsertMode = true;
+          onlyRenderImageAtCursor = true;
+        };
       };
     };
 
