@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }:
 {
@@ -20,7 +19,6 @@
     {
       blink-cmp = {
         enable = true;
-        package = inputs.blink-cmp.packages.${pkgs.system}.default;
 
         settings = {
           completion = {

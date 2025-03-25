@@ -4,11 +4,6 @@
   inputs = {
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
-
-    blink-cmp = {
-      url = "github:saghen/blink.cmp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
