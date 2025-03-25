@@ -15,6 +15,12 @@
     ]
   );
 
+  extraPlugins = with pkgs.vimPlugins; [
+    blink-cmp-avante
+    # blink-cmp-conventional-commits
+    # blink-nerdfont-nvim
+  ];
+
   plugins = lib.mkMerge [
     {
       blink-cmp = {
@@ -122,9 +128,7 @@
                 "copilot"
               ]
               ++ lib.optionals config.plugins.avante.enable [
-                "avante_commands"
-                "avante_files"
-                "avante_mentions"
+                "avante"
               ];
             providers =
               {
@@ -193,20 +197,9 @@
                 };
               }
               // lib.optionalAttrs (config.plugins.avante.enable && config.plugins.blink-compat.enable) {
-                avante_commands = {
-                  name = "avante_commands";
-                  module = "blink.compat.source";
-                  score_offset = 90;
-                };
-                avante_files = {
-                  name = "avante_files";
-                  module = "blink.compat.source";
-                  score_offset = 100;
-                };
-                avante_mentions = {
-                  name = "avante_mentions";
-                  module = "blink.compat.source";
-                  score_offset = 1000;
+                avante = {
+                  module = "blink-cmp-avante";
+                  name = "Avante";
                 };
               };
           };
