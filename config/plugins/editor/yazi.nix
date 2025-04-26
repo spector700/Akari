@@ -5,7 +5,7 @@
     {
       mode = "n";
       key = "<leader>e";
-      action = "<cmd>Yazi toggle<cr>";
+      action = "<cmd>Yazi<cr>";
       options = {
         desc = "Yazi toggle";
         silent = true;
