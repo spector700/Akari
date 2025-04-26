@@ -6,7 +6,7 @@
 }:
 {
   plugins = {
-    codeium-nvim = {
+    windsurf-nvim = {
       enable = false;
 
       settings = {
