@@ -21,15 +21,4 @@
       };
     };
   };
-
-  keymaps = lib.mkIf config.plugins.codeium-nvim.enable [
-    {
-      mode = "n";
-      key = "<leader>ac";
-      action = "<cmd>Codeium Chat<CR>";
-      options = {
-        desc = "Codeium Chat";
-      };
-    }
-  ];
 }
