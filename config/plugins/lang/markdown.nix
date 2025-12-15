@@ -1,9 +1,11 @@
 {
   lib,
   pkgs,
-  helpers,
   ...
 }:
+let
+  inherit (lib.nixvim) enableExceptInTests;
+in
 {
   extraPackages = with pkgs; [
     marksman
@@ -16,7 +18,7 @@
     };
 
     image = {
-      enable = helpers.enableExceptInTests;
+      enable = enableExceptInTests;
       settings = {
         integrations.markdown = {
           clearInInsertMode = true;
@@ -31,10 +33,6 @@
 
     conform-nvim.settings = {
       formatters_by_ft.markdown = [ "deno_fmt" ];
-
-      formatters = {
-        deno_fmt.command = lib.getExe pkgs.deno;
-      };
     };
 
     lsp.servers = {

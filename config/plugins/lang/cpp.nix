@@ -6,11 +6,6 @@
         cpp = [ "clang-format" ];
         cmake = [ "cmake-format" ];
       };
-
-      formatters = {
-        clang-format.command = lib.getExe' pkgs.clang-tools "clang-format";
-        cmake-format.command = lib.getExe pkgs.cmake-format;
-      };
     };
 
     lint = {

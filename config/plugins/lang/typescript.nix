@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
 
   plugins = {
@@ -9,10 +9,6 @@
         typescript = [ "eslint_d" ];
         typescriptreact = [ "eslint_d" ];
         svelte = [ "eslint_d" ];
-      };
-
-      formatters.eslint_d = {
-        command = lib.getExe pkgs.eslint_d;
       };
     };
 

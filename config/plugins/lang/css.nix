@@ -8,11 +8,6 @@
         timeout_ms = 2000;
         stop_after_first = true;
       };
-
-      formatters = {
-        prettierd.command = lib.getExe pkgs.prettierd;
-        prettier.command = lib.getExe pkgs.nodePackages.prettier;
-      };
     };
 
     lsp.servers = {
