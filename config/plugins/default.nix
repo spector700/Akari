@@ -69,6 +69,7 @@
     ./util/debugprint.nix
     ./util/devdocs.nix
     ./util/firenvim.nix
+    ./util/glance.nix
     ./util/kulala.nix
     ./util/mini.nix
     ./util/nvim-autopairs.nix
