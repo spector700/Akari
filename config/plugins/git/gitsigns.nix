@@ -1,6 +1,9 @@
 {
   plugins.gitsigns = {
     enable = true;
+
+    lazyLoad.settings.event = "DeferredUIEnter";
+
     settings = {
       trouble = true;
       current_line_blame = false;
@@ -82,11 +85,31 @@
     }
     {
       mode = "n";
-      key = "<leader>ghS";
-      action = ":Gitsigns stage_buffer<CR>";
+      key = "<leader>gS";
+      action.__raw = ''
+        function()
+          require('gitsigns').stage_buffer()
+          local file = vim.fn.expand('%')
+          vim.notify('Staged ' .. file, vim.log.levels.INFO, { title = 'Gitsigns' })
+        end
+      '';
       options = {
-        silent = true;
         desc = "Stage Buffer";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gU";
+      action.__raw = ''
+        function()
+          local file = vim.fn.expand('%')
+          vim.fn.system('git restore --staged ' .. file)
+          require('gitsigns').refresh()
+          vim.notify('Unstaged ' .. file, vim.log.levels.INFO, { title = 'Gitsigns' })
+        end
+      '';
+      options = {
+        desc = "Unstage Buffer";
       };
     }
     {
@@ -96,6 +119,23 @@
       options = {
         silent = true;
         desc = "Undo Stage Hunk";
+      };
+    }
+    # Toggles
+    {
+      mode = "n";
+      key = "<leader>ugb";
+      action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
+      options = {
+        desc = "Toggle Blame";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ugw";
+      action = "<cmd>Gitsigns toggle_word_diff<CR>";
+      options = {
+        desc = "Toggle Word Diff";
       };
     }
   ];
