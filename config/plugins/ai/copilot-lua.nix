@@ -55,7 +55,6 @@ in
         end
       '';
     }
-
     {
       event = "User";
       pattern = "BlinkCmpMenuClose";
