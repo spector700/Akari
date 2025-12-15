@@ -4,6 +4,7 @@
     windows-nvim
     nvzone-minty
   ];
+
   extraConfigLua = # lua
     ''
       vim.o.winwidth = 10
@@ -24,6 +25,7 @@
 
   plugins.colorizer = {
     enable = true;
+
     settings = {
       filetypes = {
         __unkeyed = "*";
@@ -50,6 +52,21 @@
       key = "<leader>uc";
       action = "<cmd>lua require('minty.huefy').open()<cr>";
       options.desc = "Minty Color Picker";
+    }
+    {
+      mode = "n";
+      key = "<leader>uC";
+      action.__raw = ''
+        function ()
+          vim.cmd('ColorizerToggle')
+          vim.g.colorizing_enabled = require('colorizer').is_buffer_attached(0)
+          vim.notify(string.format("Colorizing %s", tostring(vim.g.colorizing_enabled), "info"))
+        end
+      '';
+      options = {
+        desc = "Colorizing Toggle";
+        silent = true;
+      };
     }
   ];
 }
