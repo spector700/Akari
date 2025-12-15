@@ -2,6 +2,7 @@
   imports = [
     # ./ai/avante.nix
     ./ai/copilot-lua.nix
+    ./ai/copilot-lsp.nix
     ./ai/opencode.nix
     ./ai/sidekick.nix
     # ./ai/windsurf.nix
