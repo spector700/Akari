@@ -67,6 +67,7 @@
     ./util/colorizer.nix
     ./util/compiler.nix
     ./util/debugprint.nix
+    ./util/devdocs.nix
     ./util/kulala.nix
     ./util/mini.nix
     ./util/nvim-autopairs.nix
