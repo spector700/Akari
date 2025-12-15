@@ -3,95 +3,147 @@
     bufferline = {
       enable = true;
       settings = {
-        highlights = {
-          background = {
-            bg = "#252434";
-            fg = "#605f6f";
+        # NOTE: fixes colorscheme with transparent_background
+        # and better contrast selected tabs
+        highlights =
+          let
+            commonBgColor = "#363a4f";
+            commonFgColor = "#1e2030";
+
+            commonSelectedAttrs = {
+              bg = commonBgColor;
+            };
+
+            # Define a set with common selected attributes
+            selectedAttrsSet = builtins.listToAttrs (
+              map
+                (name: {
+                  inherit name;
+                  value = commonSelectedAttrs;
+                })
+                [
+                  # "separator_selected" # Handled uniquely
+                  "buffer_selected"
+                  "tab_selected"
+                  "numbers_selected"
+                  "close_button_selected"
+                  "duplicate_selected"
+                  "modified_selected"
+                  "info_selected"
+                  "warning_selected"
+                  "error_selected"
+                  "hint_selected"
+                  "diagnostic_selected"
+                  "info_diagnostic_selected"
+                  "warning_diagnostic_selected"
+                  "error_diagnostic_selected"
+                  "hint_diagnostic_selected"
+                ]
+            );
+          in
+          # Merge the common selected attributes with the unique attributes
+          selectedAttrsSet
+          // {
+            fill = {
+              bg = commonFgColor;
+            };
+            separator = {
+              fg = commonFgColor;
+            };
+            separator_visible = {
+              fg = commonFgColor;
+            };
+            separator_selected = {
+              bg = commonBgColor;
+              fg = commonFgColor;
+            };
           };
 
-          buffer_selected = {
-            bg = "#1E1D2D";
-            fg = "#D9E0EE";
-          };
-          buffer_visible = {
-            fg = "#605f6f";
-            bg = "#252434";
+        options = {
+          diagnostics = "nvim_lsp";
+          diagnostics_indicator = /* Lua */ ''
+            function(count, level, diagnostics_dict, context)
+              local s = ""
+              for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " "
+                  or (e == "warning" and " " or "" )
+                if(sym ~= "") then
+                  s = s .. " " .. n .. sym
+                end
+              end
+              return s
+            end
+          '';
+          # Will make sure all names in bufferline are unique
+          enforce_regular_tabs = false;
+
+          offsets = [
+            {
+              filetype = "neo-tree";
+              text = "Neo-tree";
+              highlight = "Directory";
+              text_align = "left";
+            }
+          ];
+
+          groups = {
+            options = {
+              toggle_hidden_on_enter = true;
+            };
+
+            items = [
+              {
+                name = "Tests";
+                highlight = {
+                  underline = true;
+                  fg = "#a6da95";
+                  sp = "#494d64";
+                };
+                priority = 2;
+                # icon = "";
+                matcher.__raw = ''
+                  function(buf)
+                    return buf.name:match('%test') or buf.name:match('%.spec')
+                  end
+                '';
+              }
+              {
+                name = "Docs";
+                highlight = {
+                  undercurl = true;
+                  fg = "#ffffff";
+                  sp = "#494d64";
+                };
+                auto_close = false;
+                matcher.__raw = ''
+                  function(buf)
+                    return buf.name:match('%.md') or buf.name:match('%.txt')
+                  end
+                '';
+              }
+            ];
           };
 
-          error = {
-            fg = "#605f6f";
-            bg = "#252434";
-          };
-          error_diagnostic = {
-            fg = "#605f6f";
-            bg = "#252434";
-          };
+          # indicator = {
+          #   style = "icon";
+          #   icon = "▎";
+          # };
 
-          close_button = {
-            fg = "#605f6f";
-            bg = "#252434";
-          };
-          close_button_visible = {
-            fg = "#605f6f";
-            bg = "#252434";
-          };
-          fill = {
-            bg = "#1E1D2D";
-            fg = "#605f6f";
-          };
-          indicator_selected = {
-            bg = "#1E1D2D";
-            fg = "#1E1D2D";
-          };
+          left_trunc_marker = "";
+          max_name_length = 18;
+          max_prefix_length = 15;
+          modified_icon = "●";
 
-          modified = {
-            fg = "#F38BA8";
-            bg = "#252434";
-          };
-          modified_visible = {
-            fg = "#F38BA8";
-            bg = "#252434";
-          };
-          modified_selected = {
-            fg = "#ABE9B3";
-            bg = "#1E1D2D";
-          };
-
-          separator = {
-            bg = "#252434";
-            fg = "#252434";
-          };
-          separator_visible = {
-            bg = "#252434";
-            fg = "#252434";
-          };
-          separator_selected = {
-            bg = "#252434";
-            fg = "#252434";
-          };
-
-          duplicate = {
-            fg = "NONE";
-            bg = "#252434";
-          };
-          duplicate_selected = {
-            fg = "#F38BA8";
-            bg = "#1E1D2D";
-          };
-          duplicate_visible = {
-            fg = "#89B4FA";
-            bg = "#252434";
-          };
+          persist_buffer_sort = true;
+          right_trunc_marker = "";
+          separator_style = "slant";
+          show_buffer_close_icons = true;
+          show_buffer_icons = true;
+          show_close_icon = true;
+          show_tab_indicators = true;
+          sort_by = "extension";
+          tab_size = 18;
         };
-
-        options.offsets = [
-          {
-            filetype = "neo-tree";
-            text = "Neo-tree";
-            highlight = "Directory";
-            text_align = "left";
-          }
-        ];
       };
     };
   };
