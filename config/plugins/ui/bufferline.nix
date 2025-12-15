@@ -124,11 +124,6 @@
             ];
           };
 
-          # indicator = {
-          #   style = "icon";
-          #   icon = "▎";
-          # };
-
           left_trunc_marker = "";
           max_name_length = 18;
           max_prefix_length = 15;
