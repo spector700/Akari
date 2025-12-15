@@ -16,7 +16,7 @@
           local common_sources = vim.deepcopy(base_sources)
 
           -- Add optional sources based on plugin availability
-        -- ${lib.optionalString config.plugins.blink-copilot.enable "table.insert(common_sources, 'copilot')"}
+          ${lib.optionalString config.plugins.blink-copilot.enable "table.insert(common_sources, 'copilot')"}
           ${lib.optionalString (
             config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable
           ) "table.insert(common_sources, 'dictionary')"}
@@ -124,14 +124,14 @@
             '';
           };
 
-      # copilot = lib.mkIf config.plugins.blink-copilot.enable {
-      #   name = "copilot";
-      #   module = "blink-copilot";
-      #   async = true;
-      #   timeout_ms = 1000;
-      #   max_items = 3;
-      #   score_offset = 1000;
-      # };
+      copilot = lib.mkIf config.plugins.blink-copilot.enable {
+        name = "copilot";
+        module = "blink-copilot";
+        async = true;
+        timeout_ms = 1000;
+        max_items = 3;
+        score_offset = 1000;
+      };
 
       dictionary =
         lib.mkIf (config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable)

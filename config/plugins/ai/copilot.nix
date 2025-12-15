@@ -1,7 +1,11 @@
 {
   plugins = {
     copilot-lua = {
-      enable = false;
+      enable = true;
+
+      lazyLoad.settings = {
+        event = [ "InsertEnter" ];
+      };
 
       settings = {
         nes = {
