@@ -172,14 +172,14 @@
             "snippet_backward"
             "fallback"
           ];
-          "<Tab>" = [
-            "select_next"
-            "fallback"
-          ];
-          "<S-Tab>" = [
-            "select_prev"
-            "fallback"
-          ];
+          # "<Tab>" = [
+          #   "select_next"
+          #   "fallback"
+          # ];
+          # "<S-Tab>" = [
+          #   "select_prev"
+          #   "fallback"
+          # ];
           "<C-y>" =
             lib.optionals config.plugins.sidekick.enable [
               {
