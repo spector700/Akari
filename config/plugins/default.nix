@@ -75,6 +75,8 @@
     ./util/img-clip.nix
     ./util/kulala.nix
     ./util/mini.nix
+    ./util/mini-hipatterns.nix
+    ./util/mini-move.nix
     ./util/nvim-autopairs.nix
     ./util/nvim-surround.nix
     ./util/plenary.nix
