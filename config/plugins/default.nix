@@ -77,6 +77,7 @@
     ./util/mini.nix
     ./util/mini-hipatterns.nix
     ./util/mini-move.nix
+    ./util/mini-splitjoin.nix
     ./util/nvim-autopairs.nix
     ./util/nvim-surround.nix
     ./util/plenary.nix
