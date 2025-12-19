@@ -4,10 +4,12 @@
 
 Akari
 
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px" /> <br>
-  <div align="center">
+<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px" />
+<br>
 
-  <div align="center">
+<div align="center">
+
+<div align="center">
    <p></p>
    <a href="https://github.com/sioodmy/dotfiles/">
       <img src="https://img.shields.io/github/repo-size/spector700/Akari?color=ea999c&labelColor=303446&style=for-the-badge">
@@ -28,17 +30,20 @@ Akari
 ![neovim-pic-1](./.github/assets/neovim-pic-1.png)
 ![neovim-pic-2](./.github/assets/neovim-pic-2.png)
 ![neovim-pic-3](./.github/assets/neovim-pic-3.png)
+
 <p align="center"> Screenshots Circa: 2024-4-9</p>
 
 ---
 
 # 🔨 Installation
 
-If you'd like to give it a try before installing: `nix run github:spector700/Akari`
+If you'd like to give it a try before installing:
+`nix run github:spector700/Akari`
 
 ### Adding it as a flake
 
-1: Go to the flake.nix and add `Akari.url = "github:spector700/Akari"` to your inputs.
+1: Go to the flake.nix and add `Akari.url = "github:spector700/Akari"` to your
+inputs.
 
 ```nix
 # flake
@@ -50,9 +55,11 @@ If you'd like to give it a try before installing: `nix run github:spector700/Aka
   };
 }
 ```
+
 2: Run nix flake update
 
-3: Install it by adding `inputs.Akari.packages.${system}.default` to your environment.systemPackages or home.packages. If you're using home-manager.
+3: Install it by adding `inputs.Akari.packages.${system}.default` to your
+environment.systemPackages or home.packages. If you're using home-manager.
 
 ```nix
 # packages
@@ -70,8 +77,8 @@ If you'd like to give it a try before installing: `nix run github:spector700/Aka
 
 # ⚙️ Configuration
 
-To start configuring, add or modify the nix files in `./config`.
-If you add a new configuration file, remember to add it to the
+To start configuring, add or modify the nix files in `./config`. If you add a
+new configuration file, remember to add it to the
 [`config/default.nix`](./config/default.nix) file
 
 ## Testing your new configuration
@@ -83,6 +90,7 @@ nix run .
 ```
 
 # :bookmark_tabs: Resources
+
 Some sick ass Nixvim setups that I use from.
 
 - [khaneliman/khanelivim](https://github.com/khaneliman/khanelivim/tree/main)

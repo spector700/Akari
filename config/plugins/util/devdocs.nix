@@ -26,7 +26,7 @@ in
     ];
   };
 
-  keymaps = lib.mkIf config.plugins.devdocs.enable [
+  keymaps = mkIf config.plugins.devdocs.enable [
     {
       mode = "n";
       key = "<leader>Dd";

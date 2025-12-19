@@ -3,8 +3,6 @@
     bufferline = {
       enable = true;
       settings = {
-        # NOTE: fixes colorscheme with transparent_background
-        # and better contrast selected tabs
         highlights =
           let
             commonBgColor = "#363a4f";

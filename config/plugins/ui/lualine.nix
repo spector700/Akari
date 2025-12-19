@@ -1,21 +1,61 @@
-{ icons, ... }:
+{
+  lib,
+  config,
+  icons,
+  ...
+}:
+let
+  inherit (lib) optionalString;
+in
 {
   plugins.lualine = {
     enable = true;
+
+    lazyLoad.settings.event = [
+      "VimEnter"
+      "BufReadPost"
+      "BufNewFile"
+    ];
+
     settings = {
       options = {
         always_divide_middle = true;
         ignore_focus = [ "neo-tree" ];
         globalstatus = true; # have a single statusline at bottom of neovim instead of one for every window
-        disabled_filetypes.statusline = [
-          "dashboard"
-          "alpha"
-        ];
+        disabled_filetypes = {
+          __unkeyed-1 = "startify";
+          __unkeyed-2 = "neo-tree";
+          __unkeyed-3 = "alpha";
+          __unkeyed-4 = "ministarter";
+          __unkeyed-5 = "Avante";
+          __unkeyed-6 = "AvanteInput";
+          __unkeyed-7 = "trouble";
+          __unkeyed-8 = "dapui_scopes";
+          __unkeyed-9 = "dapui_breakpoints";
+          __unkeyed-10 = "dapui_stacks";
+          __unkeyed-11 = "dapui_watches";
+          __unkeyed-12 = "dapui_console";
+          __unkeyed-13 = "dashboard";
+          __unkeyed-14 = "snacks_dashboard";
+          __unkeyed-15 = "AvanteSelectedFiles";
+          winbar = [
+            "aerial"
+            "dap-repl"
+            "dap-view"
+            "dap-view-term"
+            "neotest-summary"
+            "opencode_terminal"
+            "sidekick_terminal"
+            "snacks_terminal"
+          ];
+        };
+
         section_separators = {
           left = "";
           right = "";
         };
       };
+
       extensions = [ "fzf" ];
       sections = {
         lualine_a = [ "mode" ];
@@ -152,6 +192,50 @@
                 removed= "${icons.git.LineRemoved}",
                 },
               },
+              -- FIX
+              -- { Snacks.profiler.status() },
+              ${optionalString (config.plugins.sidekick.enable) ''
+                {
+                  function()
+                    return " "
+                  end,
+
+                  color =
+                  function()
+                    local status_mod = package.loaded["sidekick.status"]
+                    if not status_mod then return nil end
+                    local status = status_mod.get()
+                    if status then
+                        return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
+                    end
+                  end,
+                  separator = "(",
+
+                  cond = function()
+                    local status = package.loaded["sidekick.status"]
+                    return status and status.get() ~= nil
+                  end,
+                },
+              ''}
+              {
+                function()
+                    local msg = ""
+                    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                    local clients = vim.lsp.get_clients()
+                    if next(clients) == nil then
+                        return msg
+                    end
+                  for _, client in ipairs(clients) do
+                      local filetypes = client.config.filetypes
+                      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                          return client.name
+                      end
+                  end
+                  return msg
+                end,
+                icon = "",
+              },
+              ${optionalString (config.plugins.copilot-lua.enable) "copilot,"}
           }
       }
     })

@@ -16,7 +16,11 @@
         "gi" = "implementation";
       };
     };
-    lint.enable = true;
+    lint = {
+      enable = true;
+
+      lazyLoad.settings.event = "DeferredUIEnter";
+    };
 
     lsp-signature.enable = true;
     lsp-lines.enable = true;

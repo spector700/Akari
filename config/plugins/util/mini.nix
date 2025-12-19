@@ -1,11 +1,14 @@
 { lib, config, ... }:
 {
   plugins = {
+    mini-icons = {
+      enable = true;
+      mockDevIcons = true;
+    };
     mini = {
       enable = true;
       modules = {
         ai = { };
-        icons = { };
         comment = {
           options = {
             customCommentString = ''
