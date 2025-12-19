@@ -233,7 +233,7 @@ in
                   end
                   return msg
                 end,
-                icon = "",
+                icon = " ",
               },
               ${optionalString (config.plugins.copilot-lua.enable) "copilot,"}
           }
