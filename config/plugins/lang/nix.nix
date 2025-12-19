@@ -10,6 +10,7 @@ in
   plugins = {
     nix.enable = true;
     # hmts.enable = true;
+    direnv.enable = pkgs.stdenv.hostPlatform.isLinux;
     nix-develop.enable = true;
 
     conform-nvim.settings = {
