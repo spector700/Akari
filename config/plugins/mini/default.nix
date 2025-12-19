@@ -1,5 +1,11 @@
 { lib, config, ... }:
 {
+  imports = [
+    ./hipatterns.nix
+    ./move.nix
+    ./splitjoin.nix
+  ];
+
   plugins = {
     mini.enable = true;
 

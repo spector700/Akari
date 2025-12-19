@@ -8,7 +8,7 @@
     # ./ai/windsurf.nix
 
     ./completion/blink.nix
-    # ./completion/friendly-snippets.nix
+    ./completion/friendly-snippets.nix
     # ./completion/lspkind.nix
 
     ./debug/dap.nix
@@ -22,6 +22,8 @@
 
     ./theme
     ./luasnip
+
+    ./mini
 
     ./snacks
 
@@ -74,10 +76,6 @@
     ./util/hardtime.nix
     ./util/img-clip.nix
     ./util/kulala.nix
-    ./util/mini.nix
-    ./util/mini-hipatterns.nix
-    ./util/mini-move.nix
-    ./util/mini-splitjoin.nix
     ./util/nvim-autopairs.nix
     ./util/nvim-surround.nix
     ./util/plenary.nix
