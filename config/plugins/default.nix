@@ -12,6 +12,7 @@
     # ./completion/lspkind.nix
 
     ./debug/dap.nix
+    ./debug/neotest.nix
 
     ./editor/lz-n.nix
     # ./editor/neotree.nix
