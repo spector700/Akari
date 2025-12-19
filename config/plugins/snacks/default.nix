@@ -10,7 +10,9 @@
     ./bufdelete.nix
     ./gitbrowse.nix
     ./lazygit.nix
+    ./terminal.nix
   ];
+
   extraConfigLuaPre = lib.mkOrder 1 (
     lib.optionalString
       (config.plugins.snacks.enable && config.plugins.snacks.settings.profiler.enabled) # Lua
@@ -34,7 +36,9 @@
       enable = true;
       settings = {
         profiler.enabled = true;
+        picker.enabled = true;
         indent.enabled = true;
+        input.enabled = true;
         scroll.enabled = true;
       };
     };
