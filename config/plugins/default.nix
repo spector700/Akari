@@ -14,7 +14,7 @@
     ./debug/dap.nix
 
     ./editor/lz-n.nix
-    ./editor/neotree.nix
+    # ./editor/neotree.nix
     ./editor/undotree.nix
     ./editor/whichkey.nix
     ./editor/yanky.nix
