@@ -84,6 +84,7 @@
       ];
 
   plugins = {
+    lspconfig.enable = true;
     lint = {
       enable = true;
 
