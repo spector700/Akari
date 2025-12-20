@@ -15,7 +15,6 @@
     ./lazygit.nix
     ./rename.nix
     ./scratch.nix
-    ./terminal.nix
     ./toggle.nix
   ];
 

@@ -65,7 +65,7 @@
     ./ui/notify.nix
     ./ui/nui.nix
     ./ui/precognition.nix
-    # ./ui/toggleterm.nix
+    ./ui/toggleterm.nix
     # ./ui/ufo.nix
 
     ./util/colorizer.nix

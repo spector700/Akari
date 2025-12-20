@@ -2,6 +2,7 @@
 {
   plugins.toggleterm = {
     enable = true;
+
     settings = {
       size = ''
         function(term)

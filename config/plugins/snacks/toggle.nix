@@ -136,7 +136,7 @@
                 vim.cmd('set nolist')
               end
               vim.g.whitespace_character_enabled = not vim.g.whitespace_character_enabled
-              vim.notify(string.format("Showing white space characters %s", bool2str(vim.g.whitespace_character_enabled), "info"))
+              vim.notify(string.format("Showing white space characters %s", tostring(vim.g.whitespace_character_enabled), "info"))
             end
           '';
           options.desc = "Toggle Whitespace Characters";

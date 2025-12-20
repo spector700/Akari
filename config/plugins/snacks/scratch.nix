@@ -3,6 +3,9 @@
   lib,
   ...
 }:
+let
+  inherit (lib) mkIf hasAttr;
+in
 {
   plugins = {
     snacks = {
@@ -12,10 +15,10 @@
     };
 
     which-key.settings.spec =
-      lib.mkIf
+      mkIf
         (
           config.plugins.snacks.enable
-          && lib.hasAttr "scratch" config.plugins.snacks.settings
+          && hasAttr "scratch" config.plugins.snacks.settings
           && config.plugins.snacks.settings.scratch.enabled
         )
         [
@@ -28,10 +31,10 @@
   };
 
   keymaps =
-    lib.mkIf
+    mkIf
       (
         config.plugins.snacks.enable
-        && lib.hasAttr "scratch" config.plugins.snacks.settings
+        && hasAttr "scratch" config.plugins.snacks.settings
         && config.plugins.snacks.settings.scratch.enabled
       )
       [
