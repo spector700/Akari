@@ -3,7 +3,7 @@
   plugins = {
     treesitter = {
       enable = true;
-      folding = true;
+      # folding = true;
 
       settings = {
         highlight = {
