@@ -11,13 +11,13 @@ in
   extraPackages = with pkgs; [
     lsof
   ];
+
   extraLuaPackages =
     ps:
     lib.optionals
       (
         # Plugins with known tiktoken_core usage
         config.plugins.copilot-lua.enable
-        || config.plugins.avante.enable
         # Plugins with chat/session features that could benefit
         || config.plugins.opencode.enable
       )
