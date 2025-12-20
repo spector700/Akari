@@ -156,31 +156,18 @@
                   desc = "Horizontal split";
                 };
               };
-
               # "<leader>b]" = {
               #   action = "<cmd>bnext<CR>";
               #   options = {
               #     desc = "Next buffer";
               #   };
               # };
-              "<TAB>" = {
-                action = "<cmd>bnext<CR>";
-                options = {
-                  desc = "Next buffer (default)";
-                };
-              };
               # "<leader>b[" = {
               #   action = "<cmd>bprevious<CR>";
               #   options = {
               #     desc = "Previous buffer";
               #   };
               # };
-              "<S-TAB>" = {
-                action = "<cmd>bprevious<CR>";
-                options = {
-                  desc = "Previous buffer";
-                };
-              };
               "<leader>wd" = {
                 action = "<C-W>c";
                 options = {
