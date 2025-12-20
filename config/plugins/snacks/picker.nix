@@ -150,7 +150,7 @@ in
     }
     {
       mode = "n";
-      key = "<leader>fFA";
+      key = "<leader>ff";
       action = "<cmd>lua Snacks.picker.files({hidden = true, ignored = true})<cr>";
       options = {
         desc = "Find files (All files)";

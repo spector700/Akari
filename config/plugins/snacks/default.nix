@@ -9,6 +9,7 @@
     ./bufdelete.nix
     ./dim.nix
     ./gitbrowse.nix
+    ./image.nix
     ./picker.nix
     ./lazygit.nix
     ./terminal.nix

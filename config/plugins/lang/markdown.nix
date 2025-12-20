@@ -3,30 +3,12 @@
   pkgs,
   ...
 }:
-let
-  inherit (lib.nixvim) enableExceptInTests;
-in
 {
   lsp.servers = {
     marksman.enable = true;
   };
 
   plugins = {
-    clipboard-image = {
-      enable = true;
-      clipboardPackage = pkgs.wl-clipboard;
-    };
-
-    image = {
-      enable = enableExceptInTests;
-      settings = {
-        integrations.markdown = {
-          clearInInsertMode = true;
-          onlyRenderImageAtCursor = true;
-        };
-      };
-    };
-
     markdown-preview = {
       enable = true;
     };
