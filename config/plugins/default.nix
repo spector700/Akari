@@ -58,7 +58,6 @@
     ./ui/bufferline.nix
     ./ui/general.nix
     ./ui/flash.nix
-    # ./ui/indent-blankline.nix
     ./ui/lightbulb.nix
     ./ui/lualine.nix
     ./ui/noice.nix
