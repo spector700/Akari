@@ -5,6 +5,8 @@
     imagemagick
     # PDF rendering
     ghostscript
+    # Mermaid diagrams
+    mermaid-cli
     # Math expression rendering
     typst
     # LaTeX for math expressions

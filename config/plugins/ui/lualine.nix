@@ -192,7 +192,7 @@ in
                 removed= "${icons.git.LineRemoved}",
                 },
               },
-              -- FIX
+              -- TODO: fix this
               -- { Snacks.profiler.status() },
               ${optionalString (config.plugins.sidekick.enable) ''
                 {
