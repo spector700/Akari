@@ -206,7 +206,7 @@
                       else
                         vim.diagnostic.enable(0)
                       end
-                      vim.notify(string.format("Buffer Diagnostics %s", bool2str(not vim.b.disable_diagnostics), "info"))
+                      vim.notify(string.format("Buffer Diagnostics %s", tostring(not vim.b.disable_diagnostics), "info"))
                     end'';
                   options = {
                     desc = "Buffer Diagnostics toggle";
@@ -222,7 +222,7 @@
                       else
                         vim.diagnostic.enable()
                       end
-                      vim.notify(string.format("Global Diagnostics %s", bool2str(not vim.g.disable_diagnostics), "info"))
+                      vim.notify(string.format("Global Diagnostics %s", tostring(not vim.g.disable_diagnostics), "info"))
                     end'';
                   options = {
                     desc = "Global Diagnostics toggle";
@@ -235,7 +235,7 @@
                       if vim.g.spell_enabled then vim.cmd('setlocal nospell') end
                       if not vim.g.spell_enabled then vim.cmd('setlocal spell') end
                       vim.g.spell_enabled = not vim.g.spell_enabled
-                      vim.notify(string.format("Spell %s", bool2str(vim.g.spell_enabled), "info"))
+                      vim.notify(string.format("Spell %s", tostring(vim.g.spell_enabled), "info"))
                     end'';
                   options = {
                     desc = "Spell toggle";
@@ -246,7 +246,7 @@
                   action.__raw = ''
                     function ()
                       vim.wo.wrap = not vim.wo.wrap
-                      vim.notify(string.format("Wrap %s", bool2str(vim.wo.wrap), "info"))
+                      vim.notify(string.format("Wrap %s", tostring(vim.wo.wrap), "info"))
                     end'';
                   options = {
                     desc = "Word Wrap toggle";
@@ -258,7 +258,7 @@
                       local curr_foldcolumn = vim.wo.foldcolumn
                       if curr_foldcolumn ~= "0" then vim.g.last_active_foldcolumn = curr_foldcolumn end
                       vim.wo.foldcolumn = curr_foldcolumn == "0" and (vim.g.last_active_foldcolumn or "1") or "0"
-                      vim.notify(string.format("Fold Column %s", bool2str(vim.wo.foldcolumn), "info"))
+                      vim.notify(string.format("Fold Column %s", tostring(vim.wo.foldcolumn), "info"))
                     end'';
                   options = {
                     desc = "Fold Column toggle";
@@ -279,7 +279,7 @@
                 action.__raw = ''
                   function ()
                     vim.cmd('FormatToggle!')
-                    vim.notify(string.format("Buffer Autoformatting %s", bool2str(not vim.b[0].disable_autoformat), "info"))
+                    vim.notify(string.format("Buffer Autoformatting %s", tostring(not vim.b[0].disable_autoformat), "info"))
                   end'';
                 options = {
                   desc = "Buffer Autoformatting toggle";
@@ -290,7 +290,7 @@
                 action.__raw = ''
                   function ()
                     vim.cmd('FormatToggle')
-                    vim.notify(string.format("Global Autoformatting %s", bool2str(not vim.g.disable_autoformat), "info"))
+                    vim.notify(string.format("Global Autoformatting %s", tostring(not vim.g.disable_autoformat), "info"))
                   end'';
                 options = {
                   desc = "Global Autoformatting toggle";
@@ -344,7 +344,7 @@
                       vim.cmd('set nolist')
                     end
                     vim.g.whitespace_character_enabled = not vim.g.whitespace_character_enabled
-                    vim.notify(string.format("Showing white space characters %s", bool2str(vim.g.whitespace_character_enabled), "info"))
+                    vim.notify(string.format("Showing white space characters %s", tostring(vim.g.whitespace_character_enabled), "info"))
                   end'';
                 options = {
                   desc = "White space character toggle";
