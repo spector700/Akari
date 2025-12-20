@@ -11,8 +11,10 @@
     ./gitbrowse.nix
     ./image.nix
     ./picker.nix
+    ./profiler.nix
     ./lazygit.nix
     ./terminal.nix
+    ./toggle.nix
   ];
 
   extraConfigLuaPre = lib.mkOrder 1 (
@@ -38,7 +40,6 @@
       enable = true;
 
       settings = {
-        profiler.enabled = true;
         indent.enabled = true;
         input.enabled = true;
         scroll.enabled = true;

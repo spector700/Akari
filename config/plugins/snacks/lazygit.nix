@@ -1,7 +1,6 @@
 { config, lib, ... }:
 {
   plugins.snacks = {
-    enable = true;
     settings = {
       lazygit.enabled = true;
     };
@@ -12,7 +11,9 @@
       mode = "n";
       key = "<leader>gg";
       action = "<cmd>lua Snacks.lazygit()<CR>";
-      options.desc = "Open lazygit";
+      options = {
+        desc = "Open lazygit";
+      };
     }
   ];
 }
