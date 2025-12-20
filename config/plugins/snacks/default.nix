@@ -7,6 +7,7 @@
 {
   imports = [
     ./bufdelete.nix
+    ./dim.nix
     ./gitbrowse.nix
     ./picker.nix
     ./lazygit.nix
