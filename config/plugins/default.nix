@@ -15,6 +15,7 @@
 
     ./editor/lz-n.nix
     # ./editor/neotree.nix
+    ./editor/faster
     ./editor/neogen.nix
     ./editor/undotree.nix
     ./editor/whichkey.nix

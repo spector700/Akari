@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ./bigfile.nix
     ./bufdelete.nix
     ./gitbrowse.nix
     ./picker.nix
