@@ -1,7 +1,6 @@
 { config, lib, ... }:
 {
   plugins.snacks = {
-    enable = true;
     settings = {
       gitbrowse.enabled = true;
     };
@@ -12,7 +11,17 @@
       mode = "n";
       key = "<leader>go";
       action = "<cmd>lua Snacks.gitbrowse()<CR>";
-      options.desc = "Open file in browser";
+      options = {
+        desc = "Open file in browser";
+      };
+    }
+    {
+      mode = "v";
+      key = "<leader>go";
+      action = "<cmd>lua Snacks.gitbrowse()<CR>";
+      options = {
+        desc = "Open selection in browser";
+      };
     }
   ];
 }
