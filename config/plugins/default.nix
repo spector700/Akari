@@ -28,7 +28,7 @@
 
     ./snacks
 
-    ./telescope
+    # ./telescope
 
     ./git/gitsigns.nix
 

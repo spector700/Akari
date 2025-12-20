@@ -72,8 +72,18 @@ in
         "x"
         "o"
       ];
-      action = "<cmd>lua require('flash').jump()<cr>";
+      action.__raw = ''function() require("flash").jump() end'';
       options.desc = "Flash";
+    }
+    {
+      key = "S";
+      action.__raw = ''function() require("flash").treesitter() end'';
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
+      options.desc = "Flash Treesitter";
     }
     {
       key = "r";
@@ -89,7 +99,7 @@ in
         "x"
         "o"
       ];
-      action = "<cmd>lua require('flash').treesitter_search()<cr>";
+      action.__raw = ''function() require("flash").treesitter_search() end'';
       options = {
         desc = "Treesitter Search";
       };

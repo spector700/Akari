@@ -9,6 +9,7 @@
     ./bigfile.nix
     ./bufdelete.nix
     ./gitbrowse.nix
+    ./picker.nix
     ./lazygit.nix
     ./terminal.nix
   ];
@@ -36,7 +37,6 @@
       enable = true;
       settings = {
         profiler.enabled = true;
-        picker.enabled = true;
         indent.enabled = true;
         input.enabled = true;
         scroll.enabled = true;
