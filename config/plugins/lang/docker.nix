@@ -1,11 +1,10 @@
 { pkgs, lib, ... }:
 {
-  plugins = {
-    lsp.servers = {
-      dockerls.enable = true;
-      docker_compose_language_service.enable = true;
-    };
+  lsp.servers = {
+    dockerls.enable = true;
+  };
 
+  plugins = {
     lint = {
       lintersByFt = {
         docker = [ "hadolint" ];

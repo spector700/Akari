@@ -1,5 +1,39 @@
 { pkgs, lib, ... }:
+let
+  inherit (lib) getExe';
+in
 {
+  lsp.servers = {
+    cmake.enable = true;
+
+    clangd = {
+      enable = true;
+      config = {
+        settings.init_options = {
+          usePlaceholders = true;
+          completeUnimported = true;
+          clangdFileStatus = true;
+        };
+        cmd = [
+          "${getExe' pkgs.clang-tools "clangd"}"
+          "--background-index"
+          "--clang-tidy"
+          "--header-insertion=iwyu"
+          "--completion-style=detailed"
+          "--function-arg-placeholders"
+          "--fallback-style=llvm"
+        ];
+
+        onAttach.function = ''
+          vim.keymap.set('n', 'gh', "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch Source/Header (C/C++)", buffer = bufnr })
+
+          require("clangd_extensions.inlay_hints").setup_autocmd()
+          require("clangd_extensions.inlay_hints").set_inlay_hints()
+        '';
+      };
+    };
+  };
+
   plugins = {
     conform-nvim.settings = {
       formatters_by_ft = {
@@ -15,40 +49,8 @@
       };
 
       linters = {
-        clangtidy.cmd = lib.getExe' pkgs.clang-tools "clang-tidy";
-        cmakelint.cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
-      };
-    };
-
-    lsp.servers = {
-      cmake.enable = true;
-      clangd = {
-        enable = true;
-        cmd = [
-          "clangd"
-          "--offset-encoding=utf-16"
-          "--header-insertion=iwyu"
-          "--background-index"
-          "--clang-tidy"
-          "--all-scopes-completion"
-          "--completion-style=detailed"
-          "--function-arg-placeholders"
-          "--fallback-style=llvm"
-          "-j=6"
-        ];
-        onAttach.function = ''
-          vim.keymap.set('n', 'gh', "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch Source/Header (C/C++)", buffer = bufnr })
-
-          require("clangd_extensions.inlay_hints").setup_autocmd()
-          require("clangd_extensions.inlay_hints").set_inlay_hints()
-        '';
-        extraOptions = {
-          init_options = {
-            usePlaceholders = true;
-            completeUnimported = true;
-            clangdFileStatus = true;
-          };
-        };
+        clangtidy.cmd = getExe' pkgs.clang-tools "clang-tidy";
+        cmakelint.cmd = getExe' pkgs.cmake-format "cmake-lint";
       };
     };
 

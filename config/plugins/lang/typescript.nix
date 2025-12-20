@@ -1,5 +1,22 @@
 { pkgs, ... }:
 {
+  lsp.servers = {
+    biome = {
+      enable = true;
+      config.filetypes = [
+        "javascript"
+        "javascriptreact"
+        "typescript"
+        "typescriptreact"
+        "json"
+        "jsonc"
+        "css"
+        "html"
+      ];
+    };
+
+    eslint.enable = true;
+  };
 
   plugins = {
     conform-nvim.settings = {
@@ -35,38 +52,6 @@
             ];
           };
         };
-      };
-    };
-
-    lsp.servers = {
-      svelte.enable = true;
-
-      eslint = {
-        enable = true;
-        filetypes = [
-          "javascript"
-          "javascriptreact"
-          "javascript.jsx"
-          "typescript"
-          "typescriptreact"
-          "typescript.tsx"
-          "vue"
-          "html"
-          "markdown"
-          "json"
-          "jsonc"
-          "yaml"
-          "toml"
-          "xml"
-          "gql"
-          "graphql"
-          "svelte"
-          "css"
-          "less"
-          "scss"
-          "pcss"
-          "postcss"
-        ];
       };
     };
 

@@ -7,6 +7,20 @@ let
   inherit (lib) getExe;
 in
 {
+  lsp.servers = {
+    statix.enable = true;
+
+    nixd = {
+      enable = true;
+
+      config.settings.nixd = {
+        formatting = {
+          command = [ "${getExe pkgs.nixfmt-rfc-style}" ];
+        };
+      };
+    };
+  };
+
   plugins = {
     nix.enable = true;
     # hmts.enable = true;
@@ -26,20 +40,6 @@ in
 
       linters = {
         deadnix.cmd = getExe pkgs.deadnix;
-      };
-    };
-
-    lsp.servers = {
-      statix.enable = true;
-
-      nixd = {
-        enable = true;
-
-        settings = {
-          formatting = {
-            command = [ "${getExe pkgs.nixfmt-rfc-style}" ];
-          };
-        };
       };
     };
   };

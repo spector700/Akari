@@ -1,5 +1,23 @@
-{ pkgs, lib, ... }:
 {
+  lsp.servers = {
+    cssls.enable = true;
+    stylelint_lsp.enable = true;
+
+    tailwindcss = {
+      enable = true;
+      config.filetypes = [
+        "css"
+        "scss"
+        "sass"
+        "html"
+        "javascriptreact"
+        "typescriptreact"
+        "vue"
+        "svelte"
+      ];
+    };
+  };
+
   plugins = {
     conform-nvim.settings = {
       formatters_by_ft.css = {
@@ -7,24 +25,6 @@
         __unkeyed-2 = "prettier";
         timeout_ms = 2000;
         stop_after_first = true;
-      };
-    };
-
-    lsp.servers = {
-      cssls = {
-        enable = true;
-        cmd = [
-          "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server"
-          "--stdio"
-        ];
-      };
-
-      tailwindcss = {
-        enable = true;
-        cmd = [
-          (lib.getExe pkgs.tailwindcss-language-server)
-          "--stdio"
-        ];
       };
     };
   };

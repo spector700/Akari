@@ -17,6 +17,10 @@ let
 
 in
 {
+  lsp.servers = {
+    kulala_lsp.enable = true;
+  };
+
   extraPlugins = [ kulala ];
 
   extraConfigLua = ''

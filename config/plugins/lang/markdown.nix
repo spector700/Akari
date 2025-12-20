@@ -7,9 +7,9 @@ let
   inherit (lib.nixvim) enableExceptInTests;
 in
 {
-  extraPackages = with pkgs; [
-    marksman
-  ];
+  lsp.servers = {
+    marksman.enable = true;
+  };
 
   plugins = {
     clipboard-image = {
@@ -33,25 +33,6 @@ in
 
     conform-nvim.settings = {
       formatters_by_ft.markdown = [ "deno_fmt" ];
-    };
-
-    lsp.servers = {
-      marksman.enable = true;
-
-      ltex = {
-        enable = true;
-        filetypes = [
-          "markdown"
-          "text"
-        ];
-
-        settings.completionEnabled = true;
-
-        extraOptions = {
-          checkFrequency = "save";
-          language = "en-GB";
-        };
-      };
     };
 
     lint = {
