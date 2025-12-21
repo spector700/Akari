@@ -80,6 +80,7 @@
     ./util/kulala.nix
     ./util/nvim-autopairs.nix
     ./util/nvim-surround.nix
+    ./util/overseer.nix
     ./util/plenary.nix
     ./util/persistence.nix
     ./util/project-nvim.nix
