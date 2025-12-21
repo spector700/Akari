@@ -85,5 +85,6 @@
     ./util/persistence.nix
     ./util/package-info.nix
     ./util/refactoring.nix
+    ./util/todo-comments.nix
   ];
 }
