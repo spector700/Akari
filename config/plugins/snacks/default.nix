@@ -16,6 +16,7 @@
     ./rename.nix
     ./scratch.nix
     ./toggle.nix
+    ./words.nix
   ];
 
   extraConfigLuaPre = lib.mkOrder 1 (
