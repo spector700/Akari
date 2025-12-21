@@ -17,7 +17,7 @@
     # ./editor/neotree.nix
     ./editor/faster
     ./editor/neogen.nix
-    ./editor/undotree.nix
+    # ./editor/undotree.nix
     ./editor/whichkey.nix
     ./editor/yanky.nix
     ./editor/yazi.nix
