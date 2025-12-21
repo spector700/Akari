@@ -25,7 +25,7 @@
   keymaps = lib.mkIf config.plugins.overseer.enable [
     {
       mode = "n";
-      key = "<leader>RT";
+      key = "<leader>Rt";
       action = "<cmd>OverseerRun<CR>";
       options = {
         desc = "Run Tasks";
