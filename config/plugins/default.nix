@@ -36,7 +36,8 @@
     ./lsp/conform.nix
     ./lsp/fastaction.nix
     ./lsp/lsp.nix
-    ./lsp/lspsaga.nix
+    # ./lsp/lspsaga.nix
+    ./lsp/otter.nix
     ./lsp/trouble.nix
 
     ./lang/cpp.nix
