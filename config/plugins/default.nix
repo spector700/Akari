@@ -55,6 +55,7 @@
 
     ./treesitter/treesitter.nix
     ./treesitter/treesitter-textobjects.nix
+    ./treesitter/ts-comments.nix
 
     ./ui/alpha.nix
     ./ui/bufferline.nix
