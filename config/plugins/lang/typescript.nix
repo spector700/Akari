@@ -32,6 +32,13 @@
     typescript-tools = {
       enable = true;
 
+      lazyLoad.settings.ft = [
+        "typescript"
+        "javascript"
+        "typescriptreact"
+        "javascriptreact"
+      ];
+
       settings = {
         settings = {
           code_lens = "off";
@@ -55,6 +62,6 @@
       };
     };
 
-    ts-autotag.enable = true;
+    # ts-autotag.enable = true;
   };
 }
