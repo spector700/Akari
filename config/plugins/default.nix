@@ -5,7 +5,6 @@
     ./ai/copilot-lsp.nix
     ./ai/opencode.nix
     ./ai/sidekick.nix
-    # ./ai/windsurf.nix
 
     ./completion/blink.nix
     ./completion/friendly-snippets.nix

@@ -1,13 +1,23 @@
 {
-  plugins.gitsigns = {
-    enable = true;
+  plugins = {
+    gitsigns = {
+      enable = true;
 
-    lazyLoad.settings.event = "DeferredUIEnter";
+      lazyLoad.settings.event = "DeferredUIEnter";
 
-    settings = {
-      trouble = true;
-      current_line_blame = false;
+      settings = {
+        trouble = true;
+        current_line_blame = false;
+      };
     };
+
+    which-key.settings.spec = [
+      {
+        __unkeyed-1 = "<leader>gd";
+        group = "Diff";
+        icon = " ";
+      }
+    ];
   };
 
   keymaps = [
