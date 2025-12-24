@@ -3,7 +3,7 @@
     enable = true;
 
     settings = {
-      startVisible = true;
+      startVisible = false;
     };
   };
 
