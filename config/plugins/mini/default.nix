@@ -30,6 +30,15 @@
       mockDevIcons = true;
     };
 
+    # Keymaps:
+    # visual:
+    # <C-j>: open snippet selections / expand snippet
+    # <Tab>: jump next
+    # <S-Tab>: jump previous
+    # <C-c>: stop
+    # Start session at first tabstop. Type text to replace placeholder. When finished with current tabstop, jump to next with <C-l>. Repeat. If changed mind about some previous tabstop, jump back with <C-h>. Jumping also wraps around the edge (first tabstop is next after final).
+    # If tabstop has choices, use <C-n> / <C-p> to select next / previous item.
+
     mini-snippets = {
       enable = true;
       settings = {
