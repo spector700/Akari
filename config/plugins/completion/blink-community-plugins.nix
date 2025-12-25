@@ -15,7 +15,6 @@ let
 in
 {
   plugins = {
-    blink-cmp-dictionary = mkBlinkPlugin { };
     blink-cmp-git = mkBlinkPlugin { };
     blink-cmp-spell = mkBlinkPlugin { };
     blink-cmp-words = mkBlinkPlugin { };
