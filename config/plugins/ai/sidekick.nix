@@ -7,12 +7,18 @@
   config = {
     plugins = {
       sidekick = {
-        enable = false;
+        enable = true;
 
         lazyLoad.settings.keys = [
           {
             __unkeyed-1 = "<leader>ast";
             desc = "Sidekick Toggle";
+          }
+          {
+            mode = [
+              "n"
+              "v"
+            ];
           }
           {
             __unkeyed-1 = "<leader>asp";
