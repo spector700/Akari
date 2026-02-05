@@ -7,6 +7,17 @@
   };
 
   autoCmd = [
+    # Auto-reload files changed externally
+    {
+      event = [
+        "FocusGained"
+        "BufEnter"
+        "CursorHold"
+        "CursorHoldI"
+      ];
+      pattern = "*";
+      command = "if mode() != 'c' | checktime | endif";
+    }
     # highlight Text on Yank
     # {
     #   group = "highlight_yank";
