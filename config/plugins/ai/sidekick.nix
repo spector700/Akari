@@ -15,12 +15,6 @@
             desc = "Sidekick Toggle";
           }
           {
-            mode = [
-              "n"
-              "v"
-            ];
-          }
-          {
             __unkeyed-1 = "<leader>asp";
             mode = [
               "n"
@@ -145,7 +139,7 @@
             "v"
           ];
           key = "<leader>asp";
-          action.__raw = "function() require('sidekick.cli').select_prompt() end";
+          action.__raw = "function() require('sidekick.cli').prompt() end";
           options.desc = "Ask Prompt";
         }
         {
