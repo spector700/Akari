@@ -21,6 +21,8 @@
       };
       move = {
         enable = true;
+        set_jumps = true;
+
         gotoNextStart = {
           "]m" = "@function.outer";
           "]]" = "@class.outer";
@@ -38,6 +40,7 @@
           "[]" = "@class.outer";
         };
       };
+
       swap = {
         enable = true;
         swapNext = {

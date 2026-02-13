@@ -27,63 +27,25 @@
             "verilog-grammar"
           ];
         in
-        lib.filter (
-          g: !(lib.elem g.pname excludedGrammars)
-        ) config.plugins.treesitter.package.passthru.allGrammars;
+        lib.filter (g: !(lib.elem g.pname excludedGrammars)) config.plugins.treesitter.package.allGrammars;
 
-      settings = {
-        highlight = {
-          additional_vim_regex_highlighting = true;
-          enable = true;
-          disable = # Lua
-            ''
-              function(lang, bufnr)
-                return vim.api.nvim_buf_line_count(bufnr) > 10000
-              end
-            '';
-        };
-
-        incremental_selection = {
-          enable = true;
-          keymaps = {
-            init_selection = "<A-o>";
-            node_incremental = "<A-o>";
-            scope_incremental = "<A-O>";
-            node_decremental = "<A-i>";
-          };
-        };
-        indent.enable = true;
-      };
       nixvimInjections = true;
+      highlight.enable = true;
+      indent.enable = true;
     };
 
     treesitter-context = {
       inherit (config.plugins.treesitter) enable;
-      lazyLoad.settings.event = "DeferredUIEnter";
+      lazyLoad.settings.event = [
+        "BufReadPost"
+        "BufNewFile"
+      ];
 
       settings = {
         max_lines = 4;
         min_window_height = 40;
         multiwindow = true;
         separator = "-";
-      };
-    };
-
-    treesitter-refactor = {
-      inherit (config.plugins.treesitter) enable;
-
-      settings = {
-        highlightDefinitions = {
-          enable = true;
-          clearOnCursorMove = true;
-        };
-        smartRename = {
-          enable = true;
-          keymaps = {
-            smart_rename = "gR";
-          };
-        };
-        navigation.enable = true;
       };
     };
   };
